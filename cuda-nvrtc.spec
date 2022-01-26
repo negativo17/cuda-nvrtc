@@ -61,12 +61,11 @@ library.
 %setup -q -T -b 2 -n %{real_name}-linux-sbsa-%{version}-archive
 %endif
 
-%ldconfig_scriptlets
-
 %install
 mkdir -p %{buildroot}%{_includedir}
 mkdir -p %{buildroot}%{_libdir}
 mkdir -p %{buildroot}%{_libdir}/pkgconfig/
+
 cp -fr include/* %{buildroot}%{_includedir}/
 cp -fr lib/lib* %{buildroot}%{_libdir}/
 cp -fr %{SOURCE3} %{buildroot}/%{_libdir}/pkgconfig/
@@ -75,8 +74,10 @@ cp -fr %{SOURCE3} %{buildroot}/%{_libdir}/pkgconfig/
 sed -i \
     -e 's|CUDA_VERSION|%{version}|g' \
     -e 's|LIBDIR|%{_libdir}|g' \
-    -e 's|INCLUDE_DIR|%{_includedir}/cuda|g' \
+    -e 's|INCLUDE_DIR|%{_includedir}|g' \
     %{buildroot}/%{_libdir}/pkgconfig/*.pc
+
+%{?ldconfig_scriptlets}
 
 %files
 %license LICENSE
