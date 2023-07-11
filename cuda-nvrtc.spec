@@ -8,7 +8,7 @@
 
 Name:           %(echo %real_name | tr '_' '-')
 Epoch:          1
-Version:        12.1.105
+Version:        12.2.91
 Release:        1%{?dist}
 Summary:        CUDA runtime compilation library (NVRTC)
 License:        CUDA Toolkit
@@ -96,6 +96,9 @@ sed -i \
 %{_libdir}/libnvrtc_static.a
 
 %changelog
+* Tue Jul 11 2023 Simone Caronni <negativo17@gmail.com> - 1:12.2.91-1
+- Update to 12.2.91.
+
 * Thu Jun 08 2023 Simone Caronni <negativo17@gmail.com> - 1:12.1.105-1
 - Update to 12.1.105.
 
