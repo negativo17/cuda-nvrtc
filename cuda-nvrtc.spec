@@ -13,11 +13,10 @@ Release:        1%{?dist}
 Summary:        CUDA runtime compilation library (NVRTC)
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
-ExclusiveArch:  x86_64 ppc64le aarch64
+ExclusiveArch:  x86_64 aarch64
 
 Source0:        https://developer.download.nvidia.com/compute/cuda/redist/%{real_name}/linux-x86_64/%{real_name}-linux-x86_64-%{version}-archive.tar.xz
-Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{real_name}/linux-ppc64le/%{real_name}-linux-ppc64le-%{version}-archive.tar.xz
-Source2:        https://developer.download.nvidia.com/compute/cuda/redist/%{real_name}/linux-sbsa/%{real_name}-linux-sbsa-%{version}-archive.tar.xz
+Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{real_name}/linux-sbsa/%{real_name}-linux-sbsa-%{version}-archive.tar.xz
 Source3:        nvrtc.pc
 
 Requires(post): ldconfig
@@ -53,12 +52,8 @@ library.
 %setup -q -n %{real_name}-linux-x86_64-%{version}-archive
 %endif
 
-%ifarch ppc64le
-%setup -q -T -b 1 -n %{real_name}-linux-ppc64le-%{version}-archive
-%endif
-
 %ifarch aarch64
-%setup -q -T -b 2 -n %{real_name}-linux-sbsa-%{version}-archive
+%setup -q -T -b 1 -n %{real_name}-linux-sbsa-%{version}-archive
 %endif
 
 %install
@@ -98,6 +93,7 @@ sed -i \
 %changelog
 * Tue Mar 12 2024 Simone Caronni <negativo17@gmail.com> - 1:12.4.99-1
 - Update to 12.4.99.
+- Drop ppc64le.
 
 * Sat Jan 06 2024 Simone Caronni <negativo17@gmail.com> - 1:12.3.107-1
 - Update to 12.3.107.
