@@ -73,24 +73,29 @@ sed -i \
 
 %files
 %license LICENSE
+%ifarch x86_64
 %{_libdir}/libnvrtc-builtins.alt.so.*
-%{_libdir}/libnvrtc-builtins.so.*
 %{_libdir}/libnvrtc.alt.so.*
+%endif
+%{_libdir}/libnvrtc-builtins.so.*
 %{_libdir}/libnvrtc.so.*
 
 %files devel
 %{_includedir}/nvrtc.h
+%ifarch x86_64
 %{_libdir}/libnvrtc-builtins.alt.so
-%{_libdir}/libnvrtc-builtins.so
 %{_libdir}/libnvrtc.alt.so
+%endif
+%{_libdir}/libnvrtc-builtins.so
 %{_libdir}/libnvrtc.so
 %{_libdir}/pkgconfig/nvrtc.pc
 
 %files static
+%ifarch x86_64
 %{_libdir}/libnvrtc-builtins_static.alt.a
-%{_libdir}/libnvrtc-builtins_static.a
-%{_libdir}/libnvrtc.so
 %{_libdir}/libnvrtc_static.alt.a
+%endif
+%{_libdir}/libnvrtc-builtins_static.a
 %{_libdir}/libnvrtc_static.a
 
 %changelog
